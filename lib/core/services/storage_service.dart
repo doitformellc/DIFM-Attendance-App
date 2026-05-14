@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class StorageService {
   static const FlutterSecureStorage _storage =
       FlutterSecureStorage();
@@ -12,6 +12,28 @@ class StorageService {
       value: token,
     );
   }
+
+  static Future<void> savePolicyVersion(
+  String version,
+) async {
+  final prefs =
+      await SharedPreferences.getInstance();
+
+  await prefs.setString(
+    'policy_version',
+    version,
+  );
+}
+
+static Future<String?> getPolicyVersion()
+async {
+  final prefs =
+      await SharedPreferences.getInstance();
+
+  return prefs.getString(
+    'policy_version',
+  );
+}
 
   static Future<String?> getAccessToken() async {
     return await _storage.read(

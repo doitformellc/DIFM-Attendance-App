@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/widgets/dashboard_card.dart';
-
+import 'package:difm_attendance_app/features/auth/controllers/auth_controller.dart';
 class InternDashboard extends StatelessWidget {
   const InternDashboard({super.key});
 
@@ -9,11 +9,36 @@ class InternDashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff0f172a),
 
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text('Intern Dashboard'),
+appBar: AppBar(
+  backgroundColor: Colors.transparent,
+  elevation: 0,
+  title: const Text(
+    'Intern Dashboard',
+    style: TextStyle(
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  actions: [
+    IconButton(
+      tooltip: 'Logout',
+      onPressed: () async {
+        await AuthController.logout(context);
+      },
+      icon: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.red.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Icon(
+          Icons.logout_rounded,
+          color: Colors.redAccent,
+        ),
       ),
-
+    ),
+    const SizedBox(width: 12),
+  ],
+),
       body: Padding(
         padding: const EdgeInsets.all(20),
 
@@ -45,7 +70,7 @@ class InternDashboard extends StatelessWidget {
                   SizedBox(height: 10),
 
                   Text(
-                    'Night Shift',
+                    'Day Shift',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 28,
@@ -56,7 +81,7 @@ class InternDashboard extends StatelessWidget {
                   SizedBox(height: 6),
 
                   Text(
-                    '10:00 PM → 6:00 AM',
+                    '8:00 AM → 4:00 PM',
                     style: TextStyle(
                       color: Colors.white,
                     ),
