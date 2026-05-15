@@ -65,37 +65,37 @@ export const getMyShiftService =
 
         try {
 
-            const result =
-                await pool.query(
-                    `
-          SELECT
-            sa.id,
-            sa.user_id,
-            sa.effective_date,
+const result =
+    await pool.query(
+        `
+        SELECT
+          sa.id,
+          sa.user_id,
+          sa.effective_date,
 
-            s.id AS shift_id,
-            s.name,
-            s.shift_type,
-            s.start_time,
-            s.end_time,
-            s.duration_hours,
-            s.grace_period_min,
-            s.is_night_shift
+          s.id AS shift_id,
+          s.name,
+          s.shift_type,
+          s.start_time,
+          s.end_time,
+          s.duration_hours,
+          s.grace_period_min,
+          s.is_night_shift
 
-          FROM shift_assignments sa
+        FROM shift_assignments sa
 
-          INNER JOIN shifts s
-          ON s.id = sa.shift_id
+        INNER JOIN shifts s
+        ON s.id = sa.shift_id
 
-          WHERE sa.user_id = $1
-          AND sa.effective_date <= CURRENT_DATE'
+        WHERE sa.user_id = $1
+        AND sa.effective_date <= CURRENT_DATE
 
-          ORDER BY sa.effective_date DESC
+        ORDER BY sa.effective_date DESC
 
-          LIMIT 1
-          `,
-                    [userId]
-                );
+        LIMIT 1
+        `,
+        [userId]
+    );
 
             const shift =
                 result.rows[0];
