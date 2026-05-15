@@ -1,4 +1,4 @@
-import { assignShiftService, getMyShiftService } from "./shifts.service.js";
+import { assignShiftService, getMyShiftService,getAllShiftsService } from "./shifts.service.js";
 export const assignShift =
     async (req, res) => {
         /*
@@ -72,3 +72,26 @@ export const getMyShift =
 
         }
     };
+export const getAllShifts = async (
+    req,
+    res
+) => {
+    try {
+
+        const shifts =
+            await getAllShiftsService();
+
+        return res.status(200).json({
+            success: true,
+            data: shifts,
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message:
+                error.message ||
+                "Internal server error",
+        });
+    }
+};

@@ -49,7 +49,6 @@ export async function assignShiftService({
                     previousShift?.shift_id || null,
                 ]
             );
-
         await client.query("COMMIT");
         return result.rows[0];
 
@@ -89,11 +88,11 @@ export const getMyShiftService =
           ON s.id = sa.shift_id
 
           WHERE sa.user_id = $1
-          AND sa.effective_date <= CURRENT_DATE
+          AND sa.effective_date <= CURRENT_DATE + INTERVAL '1 day'
 
           ORDER BY sa.effective_date DESC
 
-          LIMIT 1
+          LIMIT 10
           `,
                     [userId]
                 );
@@ -125,4 +124,20 @@ export const getMyShiftService =
 
             throw error;
         }
+    };
+
+export const getAllShiftsService =
+    async () => {
+
+        const result =
+            await pool.query(
+                `
+        SELECT
+          *
+        FROM shifts
+        ORDER BY start_time ASC
+        `
+            );
+
+        return result.rows;
     };
