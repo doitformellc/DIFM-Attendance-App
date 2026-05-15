@@ -88,11 +88,11 @@ export const getMyShiftService =
           ON s.id = sa.shift_id
 
           WHERE sa.user_id = $1
-          AND sa.effective_date <= CURRENT_DATE + INTERVAL '1 day'
+          AND sa.effective_date <= CURRENT_DATE'
 
           ORDER BY sa.effective_date DESC
 
-          LIMIT 10
+          LIMIT 1
           `,
                     [userId]
                 );
