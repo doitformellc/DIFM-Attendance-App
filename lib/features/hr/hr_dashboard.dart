@@ -1,43 +1,125 @@
-import 'package:difm_attendance_app/features/shift/screens/assign_shift_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:difm_attendance_app/core/widgets/dashboard_card.dart';
 import 'package:difm_attendance_app/features/auth/controllers/auth_controller.dart';
-
+import 'package:difm_attendance_app/features/shift/screens/assign_shift_screen.dart';
 
 class HRDashboard extends StatelessWidget {
   const HRDashboard({super.key});
 
+  void comingSoon(
+    BuildContext context,
+    String title,
+  ) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(
+      SnackBar(
+        backgroundColor:
+            const Color(0xff1e293b),
+
+        content: Text(
+          '$title coming soon',
+        ),
+
+        behavior:
+            SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  Widget statCard(
+    String title,
+    String value,
+    Color color,
+  ) {
+    return Container(
+      padding:
+          const EdgeInsets.all(18),
+
+      decoration: BoxDecoration(
+        color:
+            Colors.white.withOpacity(
+          .05,
+        ),
+
+        borderRadius:
+            BorderRadius.circular(
+          20,
+        ),
+      ),
+
+      child: Column(
+        children: [
+
+          Text(
+            value,
+
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight:
+                  FontWeight.bold,
+              color: color,
+            ),
+          ),
+
+          const SizedBox(
+            height: 8,
+          ),
+
+          Text(
+            title,
+
+            style:
+                const TextStyle(
+              color:
+                  Colors.white70,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+      BuildContext context) {
+
     return Scaffold(
-      backgroundColor: const Color(0xff111827),
+      backgroundColor:
+          const Color(
+        0xff111827,
+      ),
 
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          'HR Dashboard',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+        backgroundColor:
+            Colors.transparent,
+
+        title:
+            const Text(
+          "HR Dashboard",
         ),
 
         actions: [
+
           IconButton(
-            tooltip: 'Logout',
-            onPressed: () async {
-              await AuthController.logout(
+            onPressed: () {
+              AuthController.logout(
                 context,
               );
             },
+
             icon: Container(
               padding:
-                  const EdgeInsets.all(8),
+                  const EdgeInsets
+                      .all(
+                8,
+              ),
 
               decoration:
                   BoxDecoration(
                 color: Colors.red
-                    .withOpacity(.15),
+                    .withOpacity(
+                  .15,
+                ),
 
                 borderRadius:
                     BorderRadius
@@ -46,15 +128,18 @@ class HRDashboard extends StatelessWidget {
                 ),
               ),
 
-              child: const Icon(
-                Icons.logout_rounded,
+              child:
+                  const Icon(
+                Icons.logout,
                 color:
                     Colors.redAccent,
               ),
             ),
           ),
 
-          const SizedBox(width: 12),
+          const SizedBox(
+            width: 12,
+          )
         ],
       ),
 
@@ -66,24 +151,27 @@ class HRDashboard extends StatelessWidget {
 
         child: Column(
           children: [
+
             Row(
               children: [
+
                 Expanded(
                   child: statCard(
-                    'Present',
-                    '84',
-                    Colors.green,
+                    "Assigned",
+                    "48",
+                    Colors.blue,
                   ),
                 ),
 
                 const SizedBox(
-                    width: 15),
+                  width: 15,
+                ),
 
                 Expanded(
                   child: statCard(
-                    'Late',
-                    '12',
-                    Colors.orange,
+                    "Active",
+                    "18",
+                    Colors.green,
                   ),
                 ),
               ],
@@ -96,31 +184,38 @@ class HRDashboard extends StatelessWidget {
             Expanded(
               child:
                   GridView.count(
-                crossAxisCount: 2,
+
+                crossAxisCount:
+                    2,
+
                 crossAxisSpacing:
                     18,
+
                 mainAxisSpacing:
                     18,
 
                 children: [
+
                   DashboardCard(
                     icon:
                         Icons.schedule,
 
                     title:
-                        'Assign Shifts',
+                        "Assign Shift",
 
                     color:
-                        Colors.blue,
+                        Colors.indigo,
 
-                    onTap: () {
+                    onTap:
+                        () {
+
                       Navigator.push(
                         context,
 
                         MaterialPageRoute(
                           builder:
                               (_) =>
-                                  const AssignShiftScreen(),
+                              const AssignShiftScreen(),
                         ),
                       );
                     },
@@ -131,33 +226,16 @@ class HRDashboard extends StatelessWidget {
                         Icons.groups,
 
                     title:
-                        'Manage Interns',
+                        "Interns",
 
                     color:
                         Colors.green,
 
-                    onTap: () {
-                      _comingSoon(
+                    onTap:
+                        (){
+                      comingSoon(
                         context,
-                        'Manage Interns',
-                      );
-                    },
-                  ),
-
-                  DashboardCard(
-                    icon:
-                        Icons.analytics,
-
-                    title:
-                        'Reports',
-
-                    color:
-                        Colors.purple,
-
-                    onTap: () {
-                      _comingSoon(
-                        context,
-                        'Reports',
+                        "Interns",
                       );
                     },
                   ),
@@ -167,33 +245,35 @@ class HRDashboard extends StatelessWidget {
                         Icons.approval,
 
                     title:
-                        'Late Approval',
+                        "Late Approval",
 
                     color:
                         Colors.orange,
 
-                    onTap: () {
-                      _comingSoon(
+                    onTap:
+                        (){
+                      comingSoon(
                         context,
-                        'Late Approval',
+                        "Late Approval",
                       );
                     },
                   ),
 
                   DashboardCard(
                     icon:
-                        Icons.face,
+                        Icons.analytics,
 
                     title:
-                        'Face Logs',
+                        "Reports",
 
                     color:
-                        Colors.cyan,
+                        Colors.purple,
 
-                    onTap: () {
-                      _comingSoon(
+                    onTap:
+                        (){
+                      comingSoon(
                         context,
-                        'Face Logs',
+                        "Reports",
                       );
                     },
                   ),
@@ -203,15 +283,35 @@ class HRDashboard extends StatelessWidget {
                         Icons.warning,
 
                     title:
-                        'Security Alerts',
+                        "Security",
 
                     color:
                         Colors.red,
 
-                    onTap: () {
-                      _comingSoon(
+                    onTap:
+                        (){
+                      comingSoon(
                         context,
-                        'Security Alerts',
+                        "Security",
+                      );
+                    },
+                  ),
+
+                  DashboardCard(
+                    icon:
+                        Icons.face,
+
+                    title:
+                        "Face Logs",
+
+                    color:
+                        Colors.cyan,
+
+                    onTap:
+                        (){
+                      comingSoon(
+                        context,
+                        "Face Logs",
                       );
                     },
                   ),
@@ -220,82 +320,6 @@ class HRDashboard extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  static void _comingSoon(
-    BuildContext context,
-    String title,
-  ) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(
-      SnackBar(
-        backgroundColor:
-            const Color(
-          0xff1e293b,
-        ),
-        behavior:
-            SnackBarBehavior
-                .floating,
-
-        content: Text(
-          '$title coming soon',
-        ),
-      ),
-    );
-  }
-
-  Widget statCard(
-    String title,
-    String value,
-    Color color,
-  ) {
-    return Container(
-      padding:
-          const EdgeInsets.all(
-        20,
-      ),
-
-      decoration:
-          BoxDecoration(
-        borderRadius:
-            BorderRadius.circular(
-          22,
-        ),
-
-        color: Colors.white
-            .withOpacity(
-          .05,
-        ),
-      ),
-
-      child: Column(
-        children: [
-          Text(
-            value,
-            style: TextStyle(
-              color: color,
-              fontSize: 34,
-              fontWeight:
-                  FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(
-            height: 10,
-          ),
-
-          Text(
-            title,
-            style:
-                const TextStyle(
-              color:
-                  Colors.white70,
-            ),
-          ),
-        ],
       ),
     );
   }

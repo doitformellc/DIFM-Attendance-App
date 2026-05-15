@@ -1,81 +1,71 @@
-import 'dart:convert';
+import 'package:difm_attendance_app/core/constants/api_constants.dart';
+import 'package:difm_attendance_app/core/services/api_service.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
+import '../models/intern_model.dart';
 import '../models/shift_model.dart';
+import '../models/shift_option_model.dart';
 
 class ShiftService {
-  static const String shiftKey =
-      'assigned_shift';
+  static Future<List<InternModel>> getInterns() async {
+    final response = await ApiService.get(
+      url: '${ApiConstants.baseUrl}${ApiConstants.interns}',
+    );
 
-  static Future<void> assignShift(
-    ShiftModel shift,
-  ) async {
-    final prefs =
-        await SharedPreferences
-            .getInstance();
+    final data = _readList(response);
+    return data
+        .map((item) => InternModel.fromJson(Map<String, dynamic>.from(item)))
+        .toList();
+  }
 
-    final data = {
-      'internName':
-          shift.internName,
-      'shiftType':
-          shift.shiftType,
-      'startTime':
-          shift.startTime
-              .toIso8601String(),
-      'endTime':
-          shift.endTime
-              .toIso8601String(),
-      'effectiveDate':
-          shift.effectiveDate
-              .toIso8601String(),
-    };
+  static Future<List<ShiftOptionModel>> getShifts() async {
+    final response = await ApiService.get(
+      url: '${ApiConstants.baseUrl}${ApiConstants.shifts}',
+    );
 
-    await prefs.setString(
-      shiftKey,
-      jsonEncode(data),
+    final data = _readList(response);
+    return data
+        .map(
+          (item) => ShiftOptionModel.fromJson(Map<String, dynamic>.from(item)),
+        )
+        .toList();
+  }
+
+  static Future<void> assignShift({
+    required String userId,
+    required String shiftId,
+    required String effectiveDate,
+  }) async {
+    await ApiService.post(
+      url: '${ApiConstants.baseUrl}${ApiConstants.assignShift}',
+      body: {
+        'userId': userId,
+        'shiftId': shiftId,
+        'effectiveDate': effectiveDate,
+      },
     );
   }
 
-  static Future<ShiftModel?>
-      getTodayShift() async {
-    final prefs =
-        await SharedPreferences
-            .getInstance();
-
-    final raw =
-        prefs.getString(
-      shiftKey,
+  static Future<ShiftModel?> getMyShift() async {
+    final response = await ApiService.get(
+      url: '${ApiConstants.baseUrl}${ApiConstants.myShift}',
     );
 
-    if (raw == null) {
+    if (response is! Map || response['data'] == null) {
       return null;
     }
 
-    final json =
-        jsonDecode(raw);
+    return ShiftModel.fromJson(Map<String, dynamic>.from(response['data']));
+  }
 
-    return ShiftModel(
-      internName:
-          json['internName'],
+  static List _readList(dynamic response) {
+    if (response is List) {
+      return response;
+    }
 
-      shiftType:
-          json['shiftType'],
+    if (response is Map && response['data'] is List) {
+      return response['data'];
+    }
 
-      startTime:
-          DateTime.parse(
-        json['startTime'],
-      ),
-
-      endTime:
-          DateTime.parse(
-        json['endTime'],
-      ),
-
-      effectiveDate:
-          DateTime.parse(
-        json['effectiveDate'],
-      ),
-    );
+    return const [];
   }
 }

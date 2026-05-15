@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:difm_attendance_app/core/services/storage_service.dart';
-import 'package:difm_attendance_app/core/constants/policy_constants.dart';
+import 'package:difm_attendance_app/features/auth/controllers/auth_controller.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -345,65 +344,65 @@ TextField(
                             borderRadius: BorderRadius.circular(18),
                           ),
                         ),
-                        // onPressed: () {
-                        //   AuthController.login(
-                        //     context: context,
-                        //     email: emailController.text.trim(),
-                        //     password: passwordController.text.trim(),
-                        //   );
-                        // },
-onPressed: () async {
-  final email = emailController.text.trim();
-  final password = passwordController.text.trim();
+                        onPressed: () {
+                          AuthController.login(
+                            context: context,
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          );
+                        },
+// onPressed: () async {
+//   final email = emailController.text.trim();
+//   final password = passwordController.text.trim();
 
-  if (email == 'intern@difm.com' &&
-      password == 'intern123') {
+//   if (email == 'intern@difm.com' &&
+//       password == 'intern123') {
 
-    final policyVersion =
-        await StorageService.getPolicyVersion();
+//     final policyVersion =
+//         await StorageService.getPolicyVersion();
 
-    if (!context.mounted) return;
+//     if (!context.mounted) return;
 
-    if (policyVersion !=
-        PolicyConstants.currentPolicyVersion) {
+//     if (policyVersion !=
+//         PolicyConstants.currentPolicyVersion) {
 
-      Navigator.pushReplacementNamed(
-        context,
-        '/policy',
-        arguments: {
-          'role': 'intern',
-        },
-      );
+//       Navigator.pushReplacementNamed(
+//         context,
+//         '/policy',
+//         arguments: {
+//           'role': 'intern',
+//         },
+//       );
 
-      return;
-    }
+//       return;
+//     }
 
-    Navigator.pushReplacementNamed(
-      context,
-      '/intern-dashboard',
-    );
-  }
+//     Navigator.pushReplacementNamed(
+//       context,
+//       '/intern-dashboard',
+//     );
+//   }
 
-  else if (email == 'hr@difm.com' &&
-      password == 'hr123') {
+//   else if (email == 'hr@difm.com' &&
+//       password == 'hr123') {
 
-    Navigator.pushReplacementNamed(
-      context,
-      '/hr-dashboard',
-    );
+//     Navigator.pushReplacementNamed(
+//       context,
+//       '/hr-dashboard',
+//     );
 
-  } else if (email == 'admin@difm.com' &&
-      password == 'admin123') {
+//   } else if (email == 'admin@difm.com' &&
+//       password == 'admin123') {
 
-    Navigator.pushReplacementNamed(
-      context,
-      '/admin-dashboard',
-    );
+//     Navigator.pushReplacementNamed(
+//       context,
+//       '/admin-dashboard',
+//     );
 
-  } else {
-    showLoginError();
-  }
-},
+//   } else {
+//     showLoginError();
+//   }
+// },
                         child: const Text(
                           'LOGIN',
                           style: TextStyle(

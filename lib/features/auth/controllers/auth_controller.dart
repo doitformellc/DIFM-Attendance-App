@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/services/auth_service.dart';
-import '../../../core/services/storage_service.dart';
-import '../../../core/constants/policy_constants.dart';
+import 'package:difm_attendance_app/core/services/auth_service.dart';
+import 'package:difm_attendance_app/core/services/storage_service.dart';
 
 class AuthController {
   static Future<void> login({
@@ -15,29 +14,51 @@ class AuthController {
         password: password,
       );
 
-      final user = response['user'];
-      final role = user['role'].toString().toLowerCase();
+      print("========= API RESPONSE =========");
+      print(response);
 
-      final policyAccepted = user['policyAccepted'] ?? false;
+      final user = _readUser(response);
 
-      if (!context.mounted) return;
+      print("USER:");
+      print(user);
 
-      // POLICY GATE
-      if (!policyAccepted) {
-        Navigator.pushReplacementNamed(
-          context,
-          '/policy',
-          arguments: {'role': role},
-        );
-        return;
+      final backendRole = _readString(user, 'role') ?? '';
+
+      final policyAccepted =
+          _readBool(user, 'policyAccepted') ??
+          _readBool(response, 'policyAccepted') ??
+          false;
+
+      if (backendRole.isEmpty) {
+        throw Exception('Role missing in API response');
       }
 
-      // ROLE BASED REDIRECT
-      final savedPolicyVersion = await StorageService.getPolicyVersion();
+      String role;
+
+      switch (backendRole.toUpperCase()) {
+        case 'INTERN':
+          role = 'intern';
+          break;
+
+        case 'HR':
+        case 'HR_ADMIN':
+          role = 'hr';
+          break;
+
+        case 'ADMIN':
+        case 'SUPER_ADMIN':
+          role = 'admin';
+          break;
+
+        default:
+          throw Exception("Unknown role: $backendRole");
+      }
+
+      print("ROLE = $role");
 
       if (!context.mounted) return;
 
-      if (savedPolicyVersion != PolicyConstants.currentPolicyVersion) {
+      if (!policyAccepted && role == 'intern') {
         Navigator.pushReplacementNamed(
           context,
           '/policy',
@@ -61,18 +82,76 @@ class AuthController {
           break;
       }
     } catch (e) {
+      print("LOGIN ERROR:");
+      print(e);
+
       if (!context.mounted) return;
 
-      _showErrorDialog(context, 'Invalid email or password');
+      _showErrorDialog(context, e.toString());
     }
   }
 
   static Future<void> logout(BuildContext context) async {
-    await AuthService.logout();
+    try {
+      await AuthService.logout();
 
-    if (!context.mounted) return;
+      await StorageService.clearAll();
 
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+      if (!context.mounted) return;
+
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    } catch (e) {
+      print('LOGOUT ERROR: $e');
+
+      if (!context.mounted) return;
+
+      _showErrorDialog(context, e.toString());
+    }
+  }
+
+  static Map? _readUser(dynamic response) {
+    if (response is! Map) {
+      return null;
+    }
+
+    final user = response['user'];
+    if (user is Map) {
+      return user;
+    }
+
+    final data = response['data'];
+    if (data is Map) {
+      final nestedUser = data['user'];
+      if (nestedUser is Map) {
+        return nestedUser;
+      }
+
+      return data;
+    }
+
+    return response;
+  }
+
+  static String? _readString(Map? source, String key) {
+    final value = source?[key];
+    return value?.toString();
+  }
+
+  static bool? _readBool(dynamic source, String key) {
+    if (source is! Map) {
+      return null;
+    }
+
+    final value = source[key];
+    if (value is bool) {
+      return value;
+    }
+
+    if (value is String) {
+      return value.toLowerCase() == 'true';
+    }
+
+    return null;
   }
 
   static void _showErrorDialog(BuildContext context, String message) {
@@ -86,22 +165,10 @@ class AuthController {
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-
               gradient: const LinearGradient(
                 colors: [Color(0xff111827), Color(0xff1e293b)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
               ),
-
               border: Border.all(color: Colors.redAccent.withOpacity(.4)),
-
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.redAccent.withOpacity(.15),
-                  blurRadius: 25,
-                  spreadRadius: 3,
-                ),
-              ],
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -111,16 +178,16 @@ class AuthController {
                   height: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.redAccent.withOpacity(.15),
+                    color: Colors.red.withOpacity(.15),
                   ),
                   child: const Icon(
-                    Icons.error_outline_rounded,
+                    Icons.close_rounded,
                     color: Colors.redAccent,
-                    size: 48,
+                    size: 45,
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
 
                 const Text(
                   'Login Failed',
@@ -136,31 +203,23 @@ class AuthController {
                 Text(
                   message,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey.shade300, height: 1.6),
+                  style: TextStyle(color: Colors.grey.shade400),
                 ),
 
-                const SizedBox(height: 28),
+                const SizedBox(height: 25),
 
                 SizedBox(
                   width: double.infinity,
-                  height: 52,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.redAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
                     ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     child: const Text(
                       'TRY AGAIN',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
-                      ),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

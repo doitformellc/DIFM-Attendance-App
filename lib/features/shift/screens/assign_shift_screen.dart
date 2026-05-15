@@ -1,295 +1,223 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/shift_controller.dart';
-import '../models/shift_model.dart';
-import '../widgets/shift_dropdown.dart';
+import '../models/intern_model.dart';
+import '../models/shift_option_model.dart';
 
-class AssignShiftScreen
-    extends StatefulWidget {
-  const AssignShiftScreen({
-    super.key,
-  });
+class AssignShiftScreen extends StatefulWidget {
+  const AssignShiftScreen({super.key});
 
   @override
-  State<AssignShiftScreen>
-      createState() =>
-          _AssignShiftScreenState();
+  State<AssignShiftScreen> createState() => _AssignShiftScreenState();
 }
 
-class _AssignShiftScreenState
-    extends State<
-        AssignShiftScreen> {
-  String selectedShift =
-      'Day';
+class _AssignShiftScreenState extends State<AssignShiftScreen> {
+  final List<InternModel> interns = [];
+  final List<ShiftOptionModel> shifts = [];
 
-  String selectedIntern =
-      'Intern A';
+  InternModel? selectedIntern;
+  ShiftOptionModel? selectedShift;
+  bool isLoading = true;
+  bool isAssigning = false;
+  String? errorMessage;
 
-  TimeOfDay startTime =
-      const TimeOfDay(
-    hour: 9,
-    minute: 0,
-  );
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
-  TimeOfDay endTime =
-      const TimeOfDay(
-    hour: 18,
-    minute: 0,
-  );
+  Future<void> loadData() async {
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+    });
 
-  final interns = [
-    'Intern A',
-    'Intern B',
-    'Intern C',
-  ];
+    try {
+      final results = await Future.wait([
+        ShiftController.loadInterns(),
+        ShiftController.loadShifts(),
+      ]);
 
-  Future<void>
-      pickStartTime() async {
-    final picked =
-        await showTimePicker(
-      context: context,
-      initialTime:
-          startTime,
-    );
+      interns
+        ..clear()
+        ..addAll(results[0] as List<InternModel>);
+      shifts
+        ..clear()
+        ..addAll(results[1] as List<ShiftOptionModel>);
 
-    if (picked != null) {
+      selectedIntern = interns.isEmpty ? null : interns.first;
+      selectedShift = shifts.isEmpty ? null : shifts.first;
+    } catch (error) {
+      errorMessage = error.toString();
+    }
+
+    if (mounted) {
       setState(() {
-        startTime =
-            picked;
+        isLoading = false;
       });
     }
   }
 
-  Future<void>
-      pickEndTime() async {
-    final picked =
-        await showTimePicker(
-      context: context,
-      initialTime:
-          endTime,
-    );
+  Future<void> assignShift() async {
+    final intern = selectedIntern;
+    final shift = selectedShift;
 
-    if (picked != null) {
-      setState(() {
-        endTime = picked;
-      });
+    if (intern == null || shift == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select intern and shift')),
+      );
+      return;
+    }
+
+    setState(() {
+      isAssigning = true;
+    });
+
+    try {
+      await ShiftController.assign(
+        userId: intern.id,
+        shiftId: shift.id,
+        effectiveDate: _dateOnly(DateTime.now()),
+      );
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('${shift.name} assigned to ${intern.name}')),
+      );
+    } catch (error) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(error.toString())));
+    } finally {
+      if (mounted) {
+        setState(() {
+          isAssigning = false;
+        });
+      }
     }
   }
 
-  Future<void>
-      assignShift() async {
-    final now =
-        DateTime.now();
+  String _dateOnly(DateTime date) {
+    final month = date.month.toString().padLeft(2, '0');
+    final day = date.day.toString().padLeft(2, '0');
+    return '${date.year}-$month-$day';
+  }
 
-    final start =
-        DateTime(
-      now.year,
-      now.month,
-      now.day,
-      startTime.hour,
-      startTime.minute,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xff111827),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text('Assign Shift'),
+      ),
+      body: Padding(padding: const EdgeInsets.all(20), child: _buildBody()),
     );
+  }
 
-    var end = DateTime(
-      now.year,
-      now.month,
-      now.day,
-      endTime.hour,
-      endTime.minute,
-    );
+  Widget _buildBody() {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
-    // night shift cross-day
-    if (end.isBefore(start)) {
-      end = end.add(
-        const Duration(
-          days: 1,
+    if (errorMessage != null) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              errorMessage!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(onPressed: loadData, child: const Text('Retry')),
+          ],
         ),
       );
     }
 
-    await ShiftController
-        .assign(
-      ShiftModel(
-        internName:
-            selectedIntern,
-
-        shiftType:
-            selectedShift,
-
-        startTime:
-            start,
-
-        endTime: end,
-
-        effectiveDate:
-            DateTime.now(),
-      ),
-    );
-
-    if (!mounted) return;
-
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Shift Assigned Successfully',
+    if (interns.isEmpty || shifts.isEmpty) {
+      return Center(
+        child: Text(
+          interns.isEmpty ? 'No interns found' : 'No active shifts found',
+          style: const TextStyle(color: Colors.white),
         ),
-      ),
-    );
-  }
+      );
+    }
 
-  @override
-  Widget build(
-      BuildContext context) {
-    return Scaffold(
-      backgroundColor:
-          const Color(
-        0xff111827,
-      ),
-
-      appBar: AppBar(
-        backgroundColor:
-            Colors.transparent,
-
-        title: const Text(
-          'Assign Shift',
+    return Column(
+      children: [
+        DropdownButtonFormField<InternModel>(
+          initialValue: selectedIntern,
+          dropdownColor: const Color(0xff1e293b),
+          decoration: const InputDecoration(labelText: 'Intern'),
+          items: interns
+              .map(
+                (intern) =>
+                    DropdownMenuItem(value: intern, child: Text(intern.name)),
+              )
+              .toList(),
+          onChanged: (value) {
+            setState(() {
+              selectedIntern = value;
+            });
+          },
         ),
-      ),
-
-      body: Padding(
-        padding:
-            const EdgeInsets.all(
-          20,
+        const SizedBox(height: 20),
+        DropdownButtonFormField<ShiftOptionModel>(
+          initialValue: selectedShift,
+          dropdownColor: const Color(0xff1e293b),
+          decoration: const InputDecoration(labelText: 'Shift'),
+          items: shifts
+              .map(
+                (shift) =>
+                    DropdownMenuItem(value: shift, child: Text(shift.label)),
+              )
+              .toList(),
+          onChanged: (value) {
+            setState(() {
+              selectedShift = value;
+            });
+          },
         ),
-
-        child: Column(
-          children: [
-            DropdownButtonFormField(
-              value:
-                  selectedIntern,
-
-              dropdownColor:
-                  const Color(
-                0xff1e293b,
-              ),
-
-              items: interns
-                  .map(
-                    (e) =>
-                        DropdownMenuItem(
-                      value:
-                          e,
-
-                      child:
-                          Text(
-                        e,
-                      ),
-                    ),
+        const SizedBox(height: 20),
+        if (selectedShift != null)
+          ListTile(
+            tileColor: Colors.white10,
+            title: Text(
+              selectedShift!.shiftType,
+              style: const TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              '${selectedShift!.startTime} - ${selectedShift!.endTime}',
+              style: const TextStyle(color: Colors.white70),
+            ),
+            trailing: Icon(
+              selectedShift!.isNightShift ? Icons.nights_stay : Icons.sunny,
+              color: Colors.white,
+            ),
+          ),
+        const Spacer(),
+        SizedBox(
+          width: double.infinity,
+          height: 56,
+          child: ElevatedButton(
+            onPressed: isAssigning ? null : assignShift,
+            child: isAssigning
+                ? const SizedBox(
+                    height: 22,
+                    width: 22,
+                    child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                  .toList(),
-
-              onChanged: (v) {
-                setState(() {
-                  selectedIntern =
-                      v!;
-                });
-              },
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            ShiftDropdown(
-              value:
-                  selectedShift,
-
-              onChanged: (v) {
-                setState(() {
-                  selectedShift =
-                      v!;
-                });
-              },
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            ListTile(
-              tileColor:
-                  Colors.white10,
-
-              title: Text(
-                'Start: ${startTime.format(context)}',
-                style:
-                    const TextStyle(
-                  color:
-                      Colors.white,
-                ),
-              ),
-
-              trailing:
-                  const Icon(
-                Icons.access_time,
-                color:
-                    Colors.white,
-              ),
-
-              onTap:
-                  pickStartTime,
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            ListTile(
-              tileColor:
-                  Colors.white10,
-
-              title: Text(
-                'End: ${endTime.format(context)}',
-                style:
-                    const TextStyle(
-                  color:
-                      Colors.white,
-                ),
-              ),
-
-              trailing:
-                  const Icon(
-                Icons.access_time,
-                color:
-                    Colors.white,
-              ),
-
-              onTap:
-                  pickEndTime,
-            ),
-
-            const Spacer(),
-
-            SizedBox(
-              width:
-                  double.infinity,
-              height: 56,
-
-              child:
-                  ElevatedButton(
-                onPressed:
-                    assignShift,
-
-                child:
-                    const Text(
-                  'Assign Shift',
-                ),
-              ),
-            )
-          ],
+                : const Text('Assign Shift'),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

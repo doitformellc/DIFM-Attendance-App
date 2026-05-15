@@ -37,6 +37,11 @@ dependencies:
   http: ^1.6.0
   shared_preferences: ^2.5.5
   flutter_secure_storage: ^10.2.0
+  geolocator: ^14.0.1
+  intl: ^0.20.2
+  provider: ^6.1.5+1
+  camera: ^0.12.0+1
+  face_detection_tflite: ^6.2.5
 
 dev_dependencies:
   flutter_test:
