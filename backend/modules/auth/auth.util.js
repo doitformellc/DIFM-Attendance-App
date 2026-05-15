@@ -4,9 +4,11 @@ import jwt from 'jsonwebtoken';
 
 
 export const generateAccessToken = (user) => {
+  console.log("Generating access token for user == ", user);
   return jwt.sign(
     {
       userId: user.id,
+      role:user.role,
     },
     process.env.JWT_SECRET,
     {

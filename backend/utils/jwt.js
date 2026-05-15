@@ -3,16 +3,19 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const signAccessToken = (user) => {
+
+
+console.log("JWT ACCESS BEEN CALLEDDD == ", process.env.JWT_ACCESS_SECRET);
+export const signAccessToken = (
+  payload
+) => {
   return jwt.sign(
-    {
-      userId: user.id,
-      role: user.role,
-      email: user.email,
-    },
+    payload,
     process.env.JWT_ACCESS_SECRET,
     {
-      expiresIn: process.env.JWT_ACCESS_EXPIRES || "15m",
+      expiresIn:
+        process.env.JWT_ACCESS_EXPIRES ||
+        "15m",
     }
   );
 };

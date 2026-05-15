@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import logger from '../../utils/logger.js';
 import jwt from "jsonwebtoken";
 import pool from "../../config/db.js"
 
@@ -8,12 +8,14 @@ export const authenticate =
   async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
+      console.log("auth header from the auth middleware == ", authHeader)
       if (
         !authHeader ||
         !authHeader.startsWith(
           "Bearer "
         )
       ) {
+        // console.log("Access token missing in the auth middleware")
         return res.status(401).json({
           success: false,
           message:
@@ -21,10 +23,14 @@ export const authenticate =
         });
       }
       const token = authHeader.split(" ")[1];
+      console.log("Token extracted from header == ", token)
+      console.log("JWT Access Secret in auth middleware == ", process.env.JWT_ACCESS_SECRET)
       const decoded = jwt.verify(
         token,
         process.env.JWT_ACCESS_SECRET
       );
+
+      console.log("decoded user ==", decoded)
       const result = await pool.query(
         `
         SELECT
@@ -64,11 +70,11 @@ export const authenticate =
       };
       next();
     } catch (error) {
+      console.log("JWT ERROR ==>", error);
+
       return res.status(401).json({
         success: false,
-
-        message:
-          "Unauthorized",
+        message: error.message,
       });
     }
   };

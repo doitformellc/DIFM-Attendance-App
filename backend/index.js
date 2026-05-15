@@ -6,6 +6,8 @@ import logger from "./utils/logger.js";
 import db from "./config/db.js";
 import bcrypt from 'bcryptjs'
 import cookieParser from 'cookie-parser'
+import shiftrouter from "./modules/shifts/shifts.router.js";
+import attendanceRouter from "./modules/attendance/attendance.route.js";
 const app = express();
 
 async function testDbConnection() {
@@ -27,6 +29,8 @@ app.get("/", (req, res) => {
     });
 });
 app.use("/auth", authRouter);
+app.use("/shifts",shiftrouter);
+app.use("/attendance",attendanceRouter)
 async function startServer() {
     await testDbConnection();
     logger.info("Server is starting");

@@ -417,3 +417,379 @@
 2026-05-14T10:26:24.088Z [INFO]: Server is starting
 2026-05-14T10:26:55.754Z [INFO]: auth service loaded successfully
 2026-05-14T10:26:55.798Z [INFO]: Server is starting
+2026-05-14T10:34:31.401Z [INFO]: auth service loaded successfully
+2026-05-14T10:34:31.443Z [INFO]: Server is starting
+2026-05-14T10:36:00.255Z [INFO]: Login attempt for email: intern@difm.com
+2026-05-14T10:36:00.500Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyNWFjNzllOS00ZDMwLTRiMTgtOTUwMS1iMTM4NTZiNjFmNzAiLCJpYXQiOjE3Nzg3NTQ5NjAsImV4cCI6MTc3OTM1OTc2MH0.AzgZ5DLFEkK1oyeMHoHxtzvA6kGFP0idTM7811qleRY
+2026-05-14T10:36:00.501Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiSU5URVJOIiwiaWF0IjoxNzc4NzU0OTYwLCJleHAiOjE3Nzg3NTU4NjB9.sB2gtoxwD_ifMX_hvnqW_sesBt-sJMoWhSl-XcIcGUM
+2026-05-14T12:08:50.191Z [INFO]: auth service loaded successfully
+2026-05-14T12:08:50.269Z [INFO]: Server is starting
+2026-05-14T12:10:38.162Z [INFO]: Login attempt for email: admin@difm.com
+2026-05-14T12:10:38.409Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMmU0ZDQ5ZC1hZTM0LTQ4ZTktOWNlOS1jMzMwMjNjNmU2YmQiLCJpYXQiOjE3Nzg3NjA2MzgsImV4cCI6MTc3OTM2NTQzOH0.D2iYprV5qER-hR2pcS7IEqbXUvvmYpCYESD0Cx6ccI4
+2026-05-14T12:10:38.409Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE3Nzg3NjA2MzgsImV4cCI6MTc3ODc2MTUzOH0.ifS-pCTMkc8pLN8dr3t5xBgqfm_gy6MLRMuFsIqLYd4
+2026-05-14T12:21:59.744Z [INFO]: auth service loaded successfully
+2026-05-14T12:21:59.782Z [INFO]: Server is starting
+2026-05-15T03:14:27.875Z [INFO]: auth service loaded successfully
+2026-05-15T03:14:27.935Z [INFO]: Server is starting
+2026-05-15T03:17:10.296Z [INFO]: Login attempt for email: admin@difm.com
+2026-05-15T03:17:10.537Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMmU0ZDQ5ZC1hZTM0LTQ4ZTktOWNlOS1jMzMwMjNjNmU2YmQiLCJpYXQiOjE3Nzg4MTUwMzAsImV4cCI6MTc3OTQxOTgzMH0.U_zlmqnWqFYF0AdPf77skcS7D_ELnQSpehzJuj7dsRc
+2026-05-15T03:17:10.538Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE3Nzg4MTUwMzAsImV4cCI6MTc3ODgxNTkzMH0.oznJjOQMb0zydcsb9RQfRwJl8BWiDo1epsn-goFgEVY
+2026-05-15T03:35:21.016Z [INFO]: auth service loaded successfully
+2026-05-15T03:35:21.055Z [INFO]: Server is starting
+2026-05-15T03:35:55.081Z [INFO]: auth service loaded successfully
+2026-05-15T03:35:55.120Z [INFO]: Server is starting
+2026-05-15T03:36:12.608Z [INFO]: Login attempt for email: admin@difm.com
+2026-05-15T03:36:12.850Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMmU0ZDQ5ZC1hZTM0LTQ4ZTktOWNlOS1jMzMwMjNjNmU2YmQiLCJpYXQiOjE3Nzg4MTYxNzIsImV4cCI6MTc3OTQyMDk3Mn0.1i85T-GMDtZsQUboYzTIavirvmFYOOPsLX2eQvuQUuw
+2026-05-15T03:36:12.850Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE3Nzg4MTYxNzIsImV4cCI6MTc3ODgxNzA3Mn0.ibFurkW7fC2kffZdtRIHqV_HADQGJ1iwbC2sf50x2gg
+2026-05-15T03:41:14.029Z [INFO]: auth service loaded successfully
+2026-05-15T03:41:14.069Z [INFO]: Server is starting
+2026-05-15T03:52:06.794Z [INFO]: Login attempt for email: intern@difm.com
+2026-05-15T03:52:07.036Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyNWFjNzllOS00ZDMwLTRiMTgtOTUwMS1iMTM4NTZiNjFmNzAiLCJpYXQiOjE3Nzg4MTcxMjcsImV4cCI6MTc3OTQyMTkyN30.B3-EdJM4HiWNs2uWNOeYbNeujIx7d05JLWc86PLC2W8
+2026-05-15T03:52:07.036Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiSU5URVJOIiwiaWF0IjoxNzc4ODE3MTI3LCJleHAiOjE3Nzg4MTgwMjd9.ey9E_KpKEreYeLGV4acuiB0Mtq3xfVycuOSrQqUw0a4
+2026-05-15T03:52:44.572Z [INFO]: Login attempt for email: admin@difm.com
+2026-05-15T03:52:44.805Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMmU0ZDQ5ZC1hZTM0LTQ4ZTktOWNlOS1jMzMwMjNjNmU2YmQiLCJpYXQiOjE3Nzg4MTcxNjQsImV4cCI6MTc3OTQyMTk2NH0.Os5EaxIEikE3p_IADu4B8TeaAXUCQhrku729qXLgCKg
+2026-05-15T03:52:44.806Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE3Nzg4MTcxNjQsImV4cCI6MTc3ODgxODA2NH0.-NJZPE0B_l4QlOi3jDlMUId9cJeHkyag3UOR5cGUuHo
+2026-05-15T03:54:17.461Z [INFO]: auth service loaded successfully
+2026-05-15T03:54:17.499Z [INFO]: Server is starting
+2026-05-15T03:54:18.716Z [INFO]: auth service loaded successfully
+2026-05-15T03:54:18.868Z [INFO]: Server is starting
+2026-05-15T03:54:23.868Z [INFO]: auth service loaded successfully
+2026-05-15T03:54:23.906Z [INFO]: Server is starting
+2026-05-15T03:54:29.300Z [INFO]: auth service loaded successfully
+2026-05-15T03:54:29.343Z [INFO]: Server is starting
+2026-05-15T03:54:34.917Z [INFO]: auth service loaded successfully
+2026-05-15T03:54:34.960Z [INFO]: Server is starting
+2026-05-15T03:55:40.713Z [INFO]: auth service loaded successfully
+2026-05-15T03:55:40.751Z [INFO]: Server is starting
+2026-05-15T03:56:46.691Z [INFO]: auth service loaded successfully
+2026-05-15T03:56:46.735Z [INFO]: Server is starting
+2026-05-15T03:57:00.049Z [INFO]: auth service loaded successfully
+2026-05-15T03:57:00.087Z [INFO]: Server is starting
+2026-05-15T03:57:08.376Z [INFO]: Decoded token: {"role":"SUPER_ADMIN","iat":1778817164,"exp":1778818064}
+2026-05-15T05:01:41.170Z [INFO]: auth service loaded successfully
+2026-05-15T05:01:41.221Z [INFO]: Server is starting
+2026-05-15T05:01:45.713Z [INFO]: auth service loaded successfully
+2026-05-15T05:01:45.863Z [INFO]: Server is starting
+2026-05-15T05:01:48.313Z [INFO]: auth service loaded successfully
+2026-05-15T05:01:48.351Z [INFO]: Server is starting
+2026-05-15T05:01:49.830Z [INFO]: auth service loaded successfully
+2026-05-15T05:01:49.867Z [INFO]: Server is starting
+2026-05-15T05:01:54.590Z [INFO]: Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE3Nzg4MTcxNjQsImV4cCI6MTc3ODgxODA2NH0.-NJZPE0B_l4QlOi3jDlMUId9cJeHkyag3UOR5cGUuHo
+2026-05-15T05:03:10.026Z [INFO]: auth service loaded successfully
+2026-05-15T05:03:10.062Z [INFO]: Server is starting
+2026-05-15T05:03:13.926Z [INFO]: auth service loaded successfully
+2026-05-15T05:03:13.963Z [INFO]: Server is starting
+2026-05-15T05:03:15.158Z [INFO]: auth service loaded successfully
+2026-05-15T05:03:15.197Z [INFO]: Server is starting
+2026-05-15T05:03:28.649Z [INFO]: auth service loaded successfully
+2026-05-15T05:03:28.687Z [INFO]: Server is starting
+2026-05-15T05:03:45.078Z [INFO]: Login attempt for email: admin@difm.com
+2026-05-15T05:03:45.321Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMmU0ZDQ5ZC1hZTM0LTQ4ZTktOWNlOS1jMzMwMjNjNmU2YmQiLCJpYXQiOjE3Nzg4MjE0MjUsImV4cCI6MTc3OTQyNjIyNX0.Pyfmt-mfOUp8JCiXgBSBg9kKpGezcCquawlTVOCfF6E
+2026-05-15T05:03:45.321Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE3Nzg4MjE0MjUsImV4cCI6MTc3ODgyMjMyNX0.8MQkoY4ii9Md9lafKv0oMmU7-Wvq9b_sMUkHI6qLJ2M
+2026-05-15T05:04:02.098Z [INFO]: Login attempt for email: intern@difm.com
+2026-05-15T05:04:02.335Z [INFO]: refresh token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyNWFjNzllOS00ZDMwLTRiMTgtOTUwMS1iMTM4NTZiNjFmNzAiLCJpYXQiOjE3Nzg4MjE0NDIsImV4cCI6MTc3OTQyNjI0Mn0.8M20OMp2ZvOcJTBP_lZt643VizLnRVbkda5cHf4bS2U
+2026-05-15T05:04:02.336Z [INFO]: access token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiSU5URVJOIiwiaWF0IjoxNzc4ODIxNDQyLCJleHAiOjE3Nzg4MjIzNDJ9.Z_An58Tl55p4yzKrRDiXOw2FNTIswo3eH8vJA2VtkoU
+2026-05-15T05:04:51.414Z [INFO]: Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiSU5URVJOIiwiaWF0IjoxNzc4ODIxNDQyLCJleHAiOjE3Nzg4MjIzNDJ9.Z_An58Tl55p4yzKrRDiXOw2FNTIswo3eH8vJA2VtkoU
+2026-05-15T05:04:51.415Z [INFO]: Decoded token: {"role":"INTERN","iat":1778821442,"exp":1778822342}
+2026-05-15T05:14:08.105Z [INFO]: auth service loaded successfully
+2026-05-15T05:14:08.142Z [INFO]: Server is starting
+2026-05-15T05:14:26.276Z [INFO]: auth service loaded successfully
+2026-05-15T05:14:26.312Z [INFO]: Server is starting
+2026-05-15T05:14:31.356Z [INFO]: auth service loaded successfully
+2026-05-15T05:14:31.394Z [INFO]: Server is starting
+2026-05-15T05:18:13.087Z [INFO]: auth service loaded successfully
+2026-05-15T05:18:13.123Z [INFO]: Server is starting
+2026-05-15T05:18:14.421Z [INFO]: auth service loaded successfully
+2026-05-15T05:18:14.465Z [INFO]: Server is starting
+2026-05-15T05:18:38.507Z [INFO]: auth service loaded successfully
+2026-05-15T05:18:38.545Z [INFO]: Server is starting
+2026-05-15T05:21:59.157Z [INFO]: auth service loaded successfully
+2026-05-15T05:21:59.196Z [INFO]: Server is starting
+2026-05-15T05:27:04.602Z [INFO]: auth service loaded successfully
+2026-05-15T05:27:04.642Z [INFO]: Server is starting
+2026-05-15T05:27:07.425Z [INFO]: auth service loaded successfully
+2026-05-15T05:27:07.462Z [INFO]: Server is starting
+2026-05-15T05:27:55.088Z [INFO]: auth service loaded successfully
+2026-05-15T05:27:55.228Z [INFO]: Server is starting
+2026-05-15T05:27:58.852Z [INFO]: auth service loaded successfully
+2026-05-15T05:27:59.005Z [INFO]: Server is starting
+2026-05-15T05:28:03.871Z [INFO]: auth service loaded successfully
+2026-05-15T05:28:03.908Z [INFO]: Server is starting
+2026-05-15T05:28:07.488Z [INFO]: auth service loaded successfully
+2026-05-15T05:28:07.527Z [INFO]: Server is starting
+2026-05-15T05:29:44.058Z [INFO]: auth service loaded successfully
+2026-05-15T05:29:44.094Z [INFO]: Server is starting
+2026-05-15T05:29:50.791Z [INFO]: auth service loaded successfully
+2026-05-15T05:29:50.826Z [INFO]: Server is starting
+2026-05-15T05:29:53.798Z [INFO]: auth service loaded successfully
+2026-05-15T05:29:53.834Z [INFO]: Server is starting
+2026-05-15T05:30:05.180Z [INFO]: auth service loaded successfully
+2026-05-15T05:30:05.220Z [INFO]: Server is starting
+2026-05-15T05:30:08.384Z [INFO]: auth service loaded successfully
+2026-05-15T05:30:08.420Z [INFO]: Server is starting
+2026-05-15T05:30:56.893Z [INFO]: auth service loaded successfully
+2026-05-15T05:30:56.930Z [INFO]: Server is starting
+2026-05-15T05:31:02.692Z [INFO]: auth service loaded successfully
+2026-05-15T05:31:02.727Z [INFO]: Server is starting
+2026-05-15T05:31:05.227Z [INFO]: auth service loaded successfully
+2026-05-15T05:31:05.263Z [INFO]: Server is starting
+2026-05-15T05:31:14.399Z [INFO]: auth service loaded successfully
+2026-05-15T05:31:14.439Z [INFO]: Server is starting
+2026-05-15T05:31:45.227Z [INFO]: auth service loaded successfully
+2026-05-15T05:31:45.262Z [INFO]: Server is starting
+2026-05-15T05:32:04.602Z [INFO]: auth service loaded successfully
+2026-05-15T05:32:04.641Z [INFO]: Server is starting
+2026-05-15T05:32:06.915Z [INFO]: auth service loaded successfully
+2026-05-15T05:32:06.950Z [INFO]: Server is starting
+2026-05-15T05:32:36.174Z [INFO]: auth service loaded successfully
+2026-05-15T05:32:36.213Z [INFO]: Server is starting
+2026-05-15T05:32:43.623Z [INFO]: auth service loaded successfully
+2026-05-15T05:32:43.660Z [INFO]: Server is starting
+2026-05-15T05:32:51.538Z [INFO]: auth service loaded successfully
+2026-05-15T05:32:51.575Z [INFO]: Server is starting
+2026-05-15T05:32:52.654Z [INFO]: auth service loaded successfully
+2026-05-15T05:32:52.691Z [INFO]: Server is starting
+2026-05-15T05:33:20.975Z [INFO]: auth service loaded successfully
+2026-05-15T05:33:21.013Z [INFO]: Server is starting
+2026-05-15T05:33:22.243Z [INFO]: auth service loaded successfully
+2026-05-15T05:33:22.384Z [INFO]: Server is starting
+2026-05-15T05:36:40.661Z [INFO]: auth service loaded successfully
+2026-05-15T05:36:40.698Z [INFO]: Server is starting
+2026-05-15T05:36:42.299Z [INFO]: auth service loaded successfully
+2026-05-15T05:36:42.340Z [INFO]: Server is starting
+2026-05-15T06:15:31.090Z [INFO]: auth service loaded successfully
+2026-05-15T06:15:31.131Z [INFO]: Server is starting
+2026-05-15T06:15:57.006Z [INFO]: auth service loaded successfully
+2026-05-15T06:15:57.049Z [INFO]: Server is starting
+2026-05-15T06:16:08.290Z [INFO]: auth service loaded successfully
+2026-05-15T06:16:08.330Z [INFO]: Server is starting
+2026-05-15T06:16:35.134Z [INFO]: auth service loaded successfully
+2026-05-15T06:16:35.284Z [INFO]: Server is starting
+2026-05-15T06:16:52.302Z [INFO]: auth service loaded successfully
+2026-05-15T06:16:52.339Z [INFO]: Server is starting
+2026-05-15T06:16:54.786Z [INFO]: auth service loaded successfully
+2026-05-15T06:16:54.826Z [INFO]: Server is starting
+2026-05-15T06:16:56.604Z [INFO]: auth service loaded successfully
+2026-05-15T06:16:56.750Z [INFO]: Server is starting
+2026-05-15T06:16:59.461Z [INFO]: auth service loaded successfully
+2026-05-15T06:16:59.498Z [INFO]: Server is starting
+2026-05-15T06:17:06.022Z [INFO]: auth service loaded successfully
+2026-05-15T06:17:06.060Z [INFO]: Server is starting
+2026-05-15T06:17:11.144Z [INFO]: auth service loaded successfully
+2026-05-15T06:17:11.180Z [INFO]: Server is starting
+2026-05-15T06:17:16.818Z [INFO]: auth service loaded successfully
+2026-05-15T06:17:16.854Z [INFO]: Server is starting
+2026-05-15T06:24:32.444Z [INFO]: auth service loaded successfully
+2026-05-15T06:24:32.483Z [INFO]: Server is starting
+2026-05-15T06:24:41.626Z [INFO]: auth service loaded successfully
+2026-05-15T06:24:41.668Z [INFO]: Server is starting
+2026-05-15T06:24:50.313Z [INFO]: auth service loaded successfully
+2026-05-15T06:24:50.350Z [INFO]: Server is starting
+2026-05-15T06:24:51.561Z [INFO]: auth service loaded successfully
+2026-05-15T06:24:51.598Z [INFO]: Server is starting
+2026-05-15T06:24:57.092Z [INFO]: auth service loaded successfully
+2026-05-15T06:24:57.132Z [INFO]: Server is starting
+2026-05-15T06:25:08.221Z [INFO]: auth service loaded successfully
+2026-05-15T06:25:08.257Z [INFO]: Server is starting
+2026-05-15T06:25:12.008Z [INFO]: auth service loaded successfully
+2026-05-15T06:25:12.044Z [INFO]: Server is starting
+2026-05-15T06:25:13.177Z [INFO]: auth service loaded successfully
+2026-05-15T06:25:13.217Z [INFO]: Server is starting
+2026-05-15T06:25:22.355Z [INFO]: auth service loaded successfully
+2026-05-15T06:25:22.392Z [INFO]: Server is starting
+2026-05-15T06:25:27.059Z [INFO]: auth service loaded successfully
+2026-05-15T06:25:27.096Z [INFO]: Server is starting
+2026-05-15T06:26:29.244Z [INFO]: auth service loaded successfully
+2026-05-15T06:26:29.281Z [INFO]: Server is starting
+2026-05-15T06:28:18.188Z [INFO]: auth service loaded successfully
+2026-05-15T06:28:18.225Z [INFO]: Server is starting
+2026-05-15T06:29:11.546Z [INFO]: auth service loaded successfully
+2026-05-15T06:29:11.582Z [INFO]: Server is starting
+2026-05-15T06:29:14.486Z [INFO]: auth service loaded successfully
+2026-05-15T06:29:14.523Z [INFO]: Server is starting
+2026-05-15T06:29:21.885Z [INFO]: auth service loaded successfully
+2026-05-15T06:29:21.920Z [INFO]: Server is starting
+2026-05-15T06:29:26.085Z [INFO]: auth service loaded successfully
+2026-05-15T06:29:26.122Z [INFO]: Server is starting
+2026-05-15T06:34:54.802Z [INFO]: auth service loaded successfully
+2026-05-15T06:34:54.956Z [INFO]: Server is starting
+2026-05-15T06:35:01.781Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:01.921Z [INFO]: Server is starting
+2026-05-15T06:35:07.884Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:07.920Z [INFO]: Server is starting
+2026-05-15T06:35:13.794Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:13.937Z [INFO]: Server is starting
+2026-05-15T06:35:18.909Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:18.950Z [INFO]: Server is starting
+2026-05-15T06:35:20.914Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:21.071Z [INFO]: Server is starting
+2026-05-15T06:35:22.358Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:22.503Z [INFO]: Server is starting
+2026-05-15T06:35:25.497Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:25.643Z [INFO]: Server is starting
+2026-05-15T06:35:39.514Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:39.552Z [INFO]: Server is starting
+2026-05-15T06:35:52.996Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:53.034Z [INFO]: Server is starting
+2026-05-15T06:35:55.962Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:55.999Z [INFO]: Server is starting
+2026-05-15T06:35:59.212Z [INFO]: auth service loaded successfully
+2026-05-15T06:35:59.250Z [INFO]: Server is starting
+2026-05-15T06:36:00.696Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:00.733Z [INFO]: Server is starting
+2026-05-15T06:36:03.545Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:03.581Z [INFO]: Server is starting
+2026-05-15T06:36:08.778Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:08.815Z [INFO]: Server is starting
+2026-05-15T06:36:10.379Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:10.525Z [INFO]: Server is starting
+2026-05-15T06:36:12.161Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:12.310Z [INFO]: Server is starting
+2026-05-15T06:36:15.112Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:15.150Z [INFO]: Server is starting
+2026-05-15T06:36:18.361Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:18.398Z [INFO]: Server is starting
+2026-05-15T06:36:19.594Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:19.636Z [INFO]: Server is starting
+2026-05-15T06:36:22.445Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:22.482Z [INFO]: Server is starting
+2026-05-15T06:36:23.927Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:23.963Z [INFO]: Server is starting
+2026-05-15T06:36:25.175Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:25.328Z [INFO]: Server is starting
+2026-05-15T06:36:26.447Z [INFO]: auth service loaded successfully
+2026-05-15T06:36:26.588Z [INFO]: Server is starting
+2026-05-15T06:39:25.550Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:25.587Z [INFO]: Server is starting
+2026-05-15T06:39:33.500Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:33.537Z [INFO]: Server is starting
+2026-05-15T06:39:36.700Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:36.737Z [INFO]: Server is starting
+2026-05-15T06:39:38.550Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:38.705Z [INFO]: Server is starting
+2026-05-15T06:39:49.482Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:49.521Z [INFO]: Server is starting
+2026-05-15T06:39:51.399Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:51.547Z [INFO]: Server is starting
+2026-05-15T06:39:54.565Z [INFO]: auth service loaded successfully
+2026-05-15T06:39:54.604Z [INFO]: Server is starting
+2026-05-15T06:40:00.482Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:00.528Z [INFO]: Server is starting
+2026-05-15T06:40:01.698Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:01.736Z [INFO]: Server is starting
+2026-05-15T06:40:07.737Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:07.773Z [INFO]: Server is starting
+2026-05-15T06:40:39.228Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:39.266Z [INFO]: Server is starting
+2026-05-15T06:40:40.381Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:40.420Z [INFO]: Server is starting
+2026-05-15T06:40:41.464Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:41.502Z [INFO]: Server is starting
+2026-05-15T06:40:43.005Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:43.046Z [INFO]: Server is starting
+2026-05-15T06:40:44.964Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:45.118Z [INFO]: Server is starting
+2026-05-15T06:40:47.613Z [INFO]: auth service loaded successfully
+2026-05-15T06:40:47.649Z [INFO]: Server is starting
+2026-05-15T06:47:02.875Z [INFO]: auth service loaded successfully
+2026-05-15T06:47:02.912Z [INFO]: Server is starting
+2026-05-15T06:47:17.054Z [INFO]: auth service loaded successfully
+2026-05-15T06:47:17.090Z [INFO]: Server is starting
+2026-05-15T06:47:40.342Z [INFO]: auth service loaded successfully
+2026-05-15T06:47:40.378Z [INFO]: Server is starting
+2026-05-15T06:47:42.155Z [INFO]: auth service loaded successfully
+2026-05-15T06:47:42.191Z [INFO]: Server is starting
+2026-05-15T06:49:07.448Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:07.486Z [INFO]: Server is starting
+2026-05-15T06:49:08.633Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:08.782Z [INFO]: Server is starting
+2026-05-15T06:49:10.190Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:10.226Z [INFO]: Server is starting
+2026-05-15T06:49:17.938Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:17.981Z [INFO]: Server is starting
+2026-05-15T06:49:19.352Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:19.390Z [INFO]: Server is starting
+2026-05-15T06:49:32.604Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:32.644Z [INFO]: Server is starting
+2026-05-15T06:49:35.694Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:35.731Z [INFO]: Server is starting
+2026-05-15T06:49:38.225Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:38.260Z [INFO]: Server is starting
+2026-05-15T06:49:41.328Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:41.363Z [INFO]: Server is starting
+2026-05-15T06:49:43.140Z [INFO]: auth service loaded successfully
+2026-05-15T06:49:43.175Z [INFO]: Server is starting
+2026-05-15T07:04:04.842Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:04.883Z [INFO]: Server is starting
+2026-05-15T07:04:07.586Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:07.627Z [INFO]: Server is starting
+2026-05-15T07:04:10.936Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:10.977Z [INFO]: Server is starting
+2026-05-15T07:04:29.253Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:29.292Z [INFO]: Server is starting
+2026-05-15T07:04:39.635Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:39.676Z [INFO]: Server is starting
+2026-05-15T07:04:42.334Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:42.373Z [INFO]: Server is starting
+2026-05-15T07:04:54.919Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:54.961Z [INFO]: Server is starting
+2026-05-15T07:04:58.269Z [INFO]: auth service loaded successfully
+2026-05-15T07:04:58.308Z [INFO]: Server is starting
+2026-05-15T07:05:04.701Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:04.748Z [INFO]: Server is starting
+2026-05-15T07:05:06.949Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:06.989Z [INFO]: Server is starting
+2026-05-15T07:05:09.599Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:09.642Z [INFO]: Server is starting
+2026-05-15T07:05:14.133Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:14.174Z [INFO]: Server is starting
+2026-05-15T07:05:16.116Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:16.158Z [INFO]: Server is starting
+2026-05-15T07:05:41.606Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:41.648Z [INFO]: Server is starting
+2026-05-15T07:05:46.351Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:46.391Z [INFO]: Server is starting
+2026-05-15T07:05:59.546Z [INFO]: auth service loaded successfully
+2026-05-15T07:05:59.588Z [INFO]: Server is starting
+2026-05-15T07:06:00.613Z [INFO]: auth service loaded successfully
+2026-05-15T07:06:00.658Z [INFO]: Server is starting
+2026-05-15T07:06:04.012Z [INFO]: auth service loaded successfully
+2026-05-15T07:06:04.053Z [INFO]: Server is starting
+2026-05-15T07:06:06.196Z [INFO]: auth service loaded successfully
+2026-05-15T07:06:06.235Z [INFO]: Server is starting
+2026-05-15T07:06:08.031Z [INFO]: auth service loaded successfully
+2026-05-15T07:06:08.074Z [INFO]: Server is starting
+2026-05-15T07:06:10.212Z [INFO]: auth service loaded successfully
+2026-05-15T07:06:10.363Z [INFO]: Server is starting
+2026-05-15T07:06:11.563Z [INFO]: auth service loaded successfully
+2026-05-15T07:06:11.603Z [INFO]: Server is starting
+2026-05-15T07:07:43.057Z [INFO]: auth service loaded successfully
+2026-05-15T07:07:43.208Z [INFO]: Server is starting
+2026-05-15T07:07:47.724Z [INFO]: auth service loaded successfully
+2026-05-15T07:07:47.765Z [INFO]: Server is starting
+2026-05-15T07:09:10.321Z [INFO]: auth service loaded successfully
+2026-05-15T07:09:10.363Z [INFO]: Server is starting
+2026-05-15T07:09:11.686Z [INFO]: auth service loaded successfully
+2026-05-15T07:09:11.725Z [INFO]: Server is starting
+2026-05-15T07:09:39.026Z [INFO]: auth service loaded successfully
+2026-05-15T07:09:39.077Z [INFO]: Server is starting
+2026-05-15T07:12:07.292Z [INFO]: auth service loaded successfully
+2026-05-15T07:12:07.443Z [INFO]: Server is starting
+2026-05-15T07:12:11.158Z [INFO]: auth service loaded successfully
+2026-05-15T07:12:11.299Z [INFO]: Server is starting
+2026-05-15T07:14:03.685Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:03.728Z [INFO]: Server is starting
+2026-05-15T07:14:07.368Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:07.420Z [INFO]: Server is starting
+2026-05-15T07:14:15.611Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:15.658Z [INFO]: Server is starting
+2026-05-15T07:14:17.900Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:17.951Z [INFO]: Server is starting
+2026-05-15T07:14:22.270Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:22.321Z [INFO]: Server is starting
+2026-05-15T07:14:27.782Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:27.824Z [INFO]: Server is starting
+2026-05-15T07:14:32.015Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:32.055Z [INFO]: Server is starting
+2026-05-15T07:14:34.767Z [INFO]: auth service loaded successfully
+2026-05-15T07:14:34.913Z [INFO]: Server is starting

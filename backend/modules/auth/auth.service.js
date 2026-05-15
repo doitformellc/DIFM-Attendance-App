@@ -18,10 +18,10 @@ export async function loginUser({ email, password, ipAddress, userAgent, deviceI
     );
     const user = result.rows[0];
     console.log("user == ", user);
-    logger.info(
-      `Login attempt for email: ${email}`,
-      { user }
-    );
+    // logger.info(
+    //   `Login attempt for email: ${email}`,
+    //   { user }
+    // );
     if (!user || !user.is_active) {
       throw Object.assign(new Error('Invalid credentials'), { statusCode: 401 });
     }
@@ -32,8 +32,8 @@ export async function loginUser({ email, password, ipAddress, userAgent, deviceI
     const payload = { userId: user.id, role: user.role };
     const accessToken = signAccessToken(payload);
     const refreshToken = signRefreshToken({ userId: user.id });
-    logger.info(`refresh token: ${refreshToken}`);
-    logger.info(`access token: ${accessToken}`);
+    // logger.info(`refresh token: ${refreshToken}`);
+    // logger.info(`access token: ${accessToken}`);
     // console.log("refresh token == ", refreshToken);
     await pool.query(
       `
