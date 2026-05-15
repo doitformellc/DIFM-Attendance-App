@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import { generateAccessToken, generateRefreshToken } from './auth.util.js'
 
-import { loginUser, logoutUser, refreshSession } from './auth.service.js'
+import { loginUser, logoutUser, refreshSession, getAllInternsService } from './auth.service.js'
 import pool from '../../config/db.js';
 export const login = async (req, res) => {
   try {
@@ -113,6 +113,28 @@ WHERE token = $1;`, [refreshToken]);
     return res.status(500).json({
       success: false,
       message: error.message,
+    });
+  }
+};
+
+export const getAllInterns = async (req, res) => {
+  try {
+    const interns = await getAllInternsService();
+
+    return res.status(200).json({
+      success: true,
+      message: "Interns fetched successfully",
+      data: interns,
+    });
+
+  } catch (error) {
+    return res.status(
+      error.statusCode || 500
+    ).json({
+      success: false,
+      message:
+        error.message ||
+        "Internal server error",
     });
   }
 };

@@ -2,7 +2,8 @@ import { checkInService,checkOutService } from "./attendance.service.js";
 
 export const checkInController = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user.userId;
+    console.log("User ID in check-in controller == ", userId);
     const attendance = await checkInService(userId);
     return res.status(201).json({
       success: true,

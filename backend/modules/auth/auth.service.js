@@ -252,3 +252,24 @@ export async function acceptPolicy({
   );
   return result.rows[0];
 }
+
+
+export const getAllInternsService = async () => {
+  try {
+
+    const result = await pool.query(
+      `
+      SELECT
+        *
+      FROM users
+      WHERE role = 'INTERN'
+      ORDER BY name ASC
+      `
+    );
+
+    return result.rows;
+
+  } catch (error) {
+    throw error;
+  }
+};
