@@ -20,8 +20,7 @@ export const checkInController = async (req, res) => {
 
 export const checkOutController = async (req, res) => {
   try {
-    const userId = req.user.id;
-
+    const userId = req.user.userId;
     const attendance = await checkOutService(userId);
 
     return res.status(200).json({
