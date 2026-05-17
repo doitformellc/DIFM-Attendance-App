@@ -6,16 +6,25 @@ import '../models/shift_model.dart';
 import '../models/shift_option_model.dart';
 
 class ShiftService {
-  static Future<List<InternModel>> getInterns() async {
-    final response = await ApiService.get(
-      url: '${ApiConstants.baseUrl}${ApiConstants.interns}',
-    );
+static Future<List<InternModel>> getInterns() async {
+  final response = await ApiService.get(
+    url: '${ApiConstants.baseUrl}${ApiConstants.interns}',
+  );
 
-    final data = _readList(response);
-    return data
-        .map((item) => InternModel.fromJson(Map<String, dynamic>.from(item)))
-        .toList();
-  }
+  print("intern response: $response");
+
+  final data = _readList(response);
+
+  print("parsed interns count: ${data.length}");
+
+  return data
+      .map(
+        (item)=>InternModel.fromJson(
+            Map<String,dynamic>.from(item),
+        ),
+      )
+      .toList();
+}
 
   static Future<List<ShiftOptionModel>> getShifts() async {
     final response = await ApiService.get(
@@ -50,11 +59,26 @@ class ShiftService {
       url: '${ApiConstants.baseUrl}${ApiConstants.myShift}',
     );
 
-    if (response is! Map || response['data'] == null) {
-      return null;
+    if (response is Map) {
+      // Preferred shape: { data: { ...shift... } }
+      if (response['data'] is Map) {
+        return ShiftModel.fromJson(
+          Map<String, dynamic>.from(response['data']),
+        );
+      }
+
+      // Backwards-compatible: backend may return the shift object at top-level
+      final looksLikeShift = response.containsKey('shiftType') ||
+          response.containsKey('startTime') ||
+          response.containsKey('start_time') ||
+          response.containsKey('shift_type');
+
+      if (looksLikeShift) {
+        return ShiftModel.fromJson(Map<String, dynamic>.from(response));
+      }
     }
 
-    return ShiftModel.fromJson(Map<String, dynamic>.from(response['data']));
+    return null;
   }
 
   static List _readList(dynamic response) {

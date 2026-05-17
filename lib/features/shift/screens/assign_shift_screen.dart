@@ -74,7 +74,14 @@ class _AssignShiftScreenState extends State<AssignShiftScreen> {
       isAssigning = true;
     });
 
-    try {
+    try {print("====== ASSIGN DEBUG ======");
+print("internId: ${intern.id}");
+print("internName: ${intern.name}");
+
+print("shiftId: ${shift.id}");
+print("shiftName: ${shift.name}");
+
+print("date: ${_dateOnly(DateTime.now())}");
       await ShiftController.assign(
         userId: intern.id,
         shiftId: shift.id,

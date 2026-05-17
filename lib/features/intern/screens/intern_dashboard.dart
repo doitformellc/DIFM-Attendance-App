@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:difm_attendance_app/core/widgets/dashboard_card.dart';
 import 'package:difm_attendance_app/features/auth/controllers/auth_controller.dart';
 import 'package:difm_attendance_app/features/attendance/controllers/break_controller.dart';
@@ -149,69 +151,176 @@ class _InternDashboardState extends State<InternDashboard> {
       setState(() {});
     }
   }
+Future<Map<String,dynamic>> getCurrentLocation() async {
 
-  Future<void> handleAttendance(FaceAttendanceAction action) async {
-    final verified = await Navigator.push<bool>(
-      context,
-      MaterialPageRoute(builder: (_) => FaceAttendanceScreen(action: action)),
+  bool serviceEnabled =
+      await Geolocator.isLocationServiceEnabled();
+
+  if(!serviceEnabled){
+    throw Exception(
+      "Location disabled"
     );
+  }
 
-    if (verified != true || !mounted) return;
+  LocationPermission permission =
+      await Geolocator.checkPermission();
+
+  if(permission==
+      LocationPermission.denied){
+
+    permission=
+      await Geolocator.requestPermission();
+  }
+
+  if(permission==
+      LocationPermission.deniedForever){
+
+    throw Exception(
+      "Location denied"
+    );
+  }
+
+  Position position =
+      await Geolocator.getCurrentPosition(
+        desiredAccuracy:
+            LocationAccuracy.high,
+      );
+
+  List<Placemark> places =
+      await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
+  Placemark place =
+      places.first;
+
+  String address=
+      "${place.street}, "
+      "${place.locality}, "
+      "${place.administrativeArea}, "
+      "${place.country}";
+
+  return {
+    "lat":
+      position.latitude,
+
+    "lng":
+      position.longitude,
+
+    "address":
+      address
+  };
+}
+Future<void> handleAttendance(
+    FaceAttendanceAction action
+) async {
+
+  final verified =
+      await Navigator.push<bool>(
+        context,
+
+        MaterialPageRoute(
+          builder:(_)=>
+          FaceAttendanceScreen(
+            action: action,
+          ),
+        ),
+      );
+
+  if(verified!=true) return;
+
+  try{
 
     setState(() {
-      isAttendanceLoading = true;
+      isAttendanceLoading=true;
     });
 
-    try {
-      final response = action == FaceAttendanceAction.checkIn
-          ? await AttendanceService.checkIn()
-          : await AttendanceService.checkout();
+    final location=
+        await getCurrentLocation();
 
-      final attendance = _readAttendanceData(response);
-      final timestamp = action == FaceAttendanceAction.checkIn
-          ? _readAttendanceTime(attendance, 'checkin_ts', 'check_in')
-          : _readAttendanceTime(attendance, 'checkout_ts', 'check_out');
+    final response=
+      action==
+      FaceAttendanceAction.checkIn
 
-      setState(() {
-        if (action == FaceAttendanceAction.checkIn) {
-          checkInTime = timestamp ?? DateTime.now();
-          checkOutTime = null;
-        } else {
-          checkOutTime = timestamp ?? DateTime.now();
-        }
-      });
+      ? await AttendanceService.checkIn(
 
-      if (!mounted) return;
+          latitude:
+          location["lat"],
 
-      AttendancePopup.show(
-        context: context,
-        title: action == FaceAttendanceAction.checkIn
-            ? 'Checked In'
-            : 'Checked Out',
-        subtitle: action == FaceAttendanceAction.checkIn
-            ? 'Attendance marked successfully'
-            : 'Session ended successfully',
-        icon: action == FaceAttendanceAction.checkIn
-            ? Icons.check_circle
-            : Icons.task_alt,
-        color: action == FaceAttendanceAction.checkIn
-            ? Colors.green
-            : Colors.redAccent,
-      );
-    } catch (error) {
-      if (!mounted) return;
+          longitude:
+          location["lng"],
 
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(error.toString())));
-    } finally {
-      if (mounted) {
-        setState(() {
-          isAttendanceLoading = false;
-        });
-      }
-    }
+          address:
+          location["address"],
+        )
+
+      : await AttendanceService.checkout(
+
+          latitude:
+          location["lat"],
+
+          longitude:
+          location["lng"],
+
+          address:
+          location["address"],
+        );
+
+    print(response);
+
+    if(!mounted) return;
+
+    AttendancePopup.show(
+
+      context:context,
+
+      title:
+      action==
+      FaceAttendanceAction.checkIn
+
+      ? "Checked In"
+      : "Checked Out",
+
+      subtitle:
+      location["address"],
+
+      icon:
+      action==
+      FaceAttendanceAction.checkIn
+
+      ? Icons.check_circle
+      : Icons.task_alt,
+
+      color:
+      action==
+      FaceAttendanceAction.checkIn
+
+      ? Colors.green
+      : Colors.redAccent,
+    );
+
+  }catch(e){
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(
+
+      SnackBar(
+        content:
+            Text(
+              e.toString(),
+            ),
+      ),
+    );
+
+  }finally{
+
+    setState(() {
+      isAttendanceLoading=false;
+    });
   }
+}
 
   Map<String, dynamic> _readAttendanceData(dynamic response) {
     if (response is Map && response['data'] is Map) {
