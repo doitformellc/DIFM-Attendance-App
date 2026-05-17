@@ -6,6 +6,7 @@ import logger from "./utils/logger.js";
 import db from "./config/db.js";
 import bcrypt from 'bcryptjs'
 import cookieParser from 'cookie-parser'
+import cors from "cors";
 import shiftrouter from "./modules/shifts/shifts.router.js";
 import attendanceRouter from "./modules/attendance/attendance.route.js";
 const app = express();
@@ -21,8 +22,27 @@ async function testDbConnection() {
         process.exit(1);
     }
 }
+app.use(
+    cors({
+        origin: true,
+        credentials: true,
+        methods: [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS"
+        ],
+        allowedHeaders: [
+            "Content-Type",
+            "Authorization"
+        ]
+    })
+);
 app.use(cookieParser());
 app.use(express.json());
+
 app.get("/", (req, res) => {
     res.json({
         message: "Attendance Backend Running",

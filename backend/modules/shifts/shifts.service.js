@@ -7,39 +7,63 @@ export async function assignShiftService({
     assignedById,
     reason,
 }) {
-    const client =
-        await pool.connect();
+    console.log("===== ASSIGN =====");
+
+    console.log({
+        userId,
+        shiftId,
+        effectiveDate,
+        assignedById,
+        reason,
+    });
+
+    const client = await pool.connect();
+
     try {
         await client.query("BEGIN");
+
+        // get previous shift for history tracking
         const previousResult =
             await client.query(
                 `
-        SELECT shift_id
-        FROM shift_assignments
-        WHERE user_id = $1
-        ORDER BY effective_date DESC
-        LIMIT 1
-        `,
+                SELECT shift_id
+                FROM shift_assignments
+                WHERE user_id = $1
+                ORDER BY effective_date DESC
+                LIMIT 1
+                `,
                 [userId]
             );
+
         const previousShift =
             previousResult.rows[0];
+
+        // remove old assignment so only one active shift exists
+        await client.query(
+            `
+            DELETE FROM shift_assignments
+            WHERE user_id = $1
+            `,
+            [userId]
+        );
+
+        // insert new assignment
         const result =
             await client.query(
                 `
-        INSERT INTO shift_assignments (
-          user_id,
-          shift_id,
-          effective_date,
-          assigned_by_id,
-          reason,
-          previous_shift_id
-        )
-        VALUES (
-          $1,$2,$3,$4,$5,$6
-        )
-        RETURNING *
-        `,
+                INSERT INTO shift_assignments (
+                    user_id,
+                    shift_id,
+                    effective_date,
+                    assigned_by_id,
+                    reason,
+                    previous_shift_id
+                )
+                VALUES(
+                    $1,$2,$3,$4,$5,$6
+                )
+                RETURNING *
+                `,
                 [
                     userId,
                     shiftId,
@@ -49,53 +73,83 @@ export async function assignShiftService({
                     previousShift?.shift_id || null,
                 ]
             );
+
         await client.query("COMMIT");
+
         return result.rows[0];
 
     } catch (error) {
+
         await client.query("ROLLBACK");
+
+        console.log(
+            "assignShiftService error ==",
+            error
+        );
+
         throw error;
+
     } finally {
+
         client.release();
     }
 }
+
+export const getInternsService =
+    async () => {
+
+        const result =
+            await pool.query(`
+                SELECT
+                    id,
+                    name,
+                    email,
+                    employee_code,
+                    department
+                FROM users
+                WHERE role='INTERN'
+                ORDER BY name
+            `);
+
+        return result.rows;
+    };
 
 export const getMyShiftService =
     async (userId) => {
 
         try {
 
-const result =
-    await pool.query(
-        `
-        SELECT
-          sa.id,
-          sa.user_id,
-          sa.effective_date,
+            const result =
+                await pool.query(
+                    `
+                    SELECT
+                        sa.id,
+                        sa.user_id,
+                        sa.effective_date,
 
-          s.id AS shift_id,
-          s.name,
-          s.shift_type,
-          s.start_time,
-          s.end_time,
-          s.duration_hours,
-          s.grace_period_min,
-          s.is_night_shift
+                        s.id AS shift_id,
+                        s.name,
+                        s.shift_type,
+                        s.start_time,
+                        s.end_time,
+                        s.duration_hours,
+                        s.grace_period_min,
+                        s.is_night_shift
 
-        FROM shift_assignments sa
+                    FROM shift_assignments sa
 
-        INNER JOIN shifts s
-        ON s.id = sa.shift_id
+                    INNER JOIN shifts s
+                    ON s.id = sa.shift_id
 
-        WHERE sa.user_id = $1
-        AND sa.effective_date <= CURRENT_DATE
+                    WHERE sa.user_id = $1
+                    AND sa.effective_date <= CURRENT_DATE
 
-        ORDER BY sa.effective_date DESC
+                    ORDER BY sa.effective_date DESC
 
-        LIMIT 1
-        `,
-        [userId]
-    );
+                    LIMIT 1
+                    `,
+                    [userId]
+                );
 
             const shift =
                 result.rows[0];
@@ -110,7 +164,6 @@ const result =
                         statusCode: 404,
                     }
                 );
-
             }
 
             return shift;
@@ -132,11 +185,10 @@ export const getAllShiftsService =
         const result =
             await pool.query(
                 `
-        SELECT
-          *
-        FROM shifts
-        ORDER BY start_time ASC
-        `
+                SELECT *
+                FROM shifts
+                ORDER BY start_time ASC
+                `
             );
 
         return result.rows;
